@@ -1,5 +1,5 @@
 FROM node:22
-LABEL authors="tjtya"
+LABEL authors="Thulani"
 
 WORKDIR /app
 
