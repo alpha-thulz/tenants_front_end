@@ -66,7 +66,7 @@ export default function Register() {
             if(res.status === 201) {
                 navigate("/");
             } else if (res.status === 409) {
-                setError(res.response.data.message);
+                setError(res.data.message);
                 setIsAlertOpen(true);
             }
         }).catch((error) => {

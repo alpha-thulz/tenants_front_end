@@ -2,8 +2,8 @@ import axios from "axios";
 
 const client = (base_url: string) => {
     const client = axios.create({
-        baseURL: base_url || "https://api.tenants.wedela.co.za",
-        // baseURL: base_url || "http://localhost:8080",
+        // baseURL: base_url || "https://api.tenants.wedela.co.za",
+        baseURL: base_url || "http://localhost:8080",
         timeout: 30000,
         headers: {
             "Content-Type": "application/json"
@@ -18,8 +18,8 @@ const client = (base_url: string) => {
 
         return config;
     }, (error) => {
-        console.log(error);
-        return error;
+        console.log(error.response);
+        return error.response;
     });
 
     client.interceptors.response.use((response) => {
@@ -34,8 +34,8 @@ const client = (base_url: string) => {
         // }
         return response;
     }, (error) => {
-        console.log(error);
-        return error;
+        console.log(error.response);
+        return error.response;
     });
 
     return client;
