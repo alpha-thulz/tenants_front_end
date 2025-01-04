@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router";
 import Home from "./pages/Home.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
+import Register from "./pages/Register.tsx";
+import Login from "./pages/Login.tsx";
 
 export default function App() {
     return (
@@ -12,6 +14,8 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </>
     );
