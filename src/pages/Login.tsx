@@ -28,6 +28,9 @@ export default function Login() {
         }).then((response) => {
             if(response.status === 200) {
                 navigate("/");
+            } else if (response.status === 409) {
+                setError(response.data.message);
+                setIsAlertOpen(true);
             }
         }).catch(() => {
             setError("Invalid credentials");
