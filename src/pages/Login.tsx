@@ -1,6 +1,6 @@
 import {Button, Form} from "react-bootstrap";
 import {Link, useNavigate} from "react-router";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 import client from "../utils/connect.ts";
 import Alert from "../components/Alert.tsx";
 
@@ -11,16 +11,22 @@ export default function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);
     };
 
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
     };
 
     const handleFormSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
+
+        if (username.trim().length <= 0 || password.trim().length <= 0) {
+            setError("You need to enter your login details.");
+            setIsAlertOpen(true);
+            return;
+        }
 
         client("").post("/api/v1/users/login", {
             "username": username,
