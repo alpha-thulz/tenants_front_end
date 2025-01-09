@@ -2,8 +2,8 @@ import axios from "axios";
 
 const client = (base_url: string) => {
     const client = axios.create({
-        baseURL: base_url || "https://api.tenants.wedela.co.za",
-        // baseURL: base_url || "http://localhost:8080",
+        // baseURL: base_url || "https://api.tenants.wedela.co.za",
+        baseURL: base_url || "http://localhost:8080",
         timeout: 30000,
         headers: {
             "Content-Type": "application/json"
@@ -11,9 +11,11 @@ const client = (base_url: string) => {
     });
 
     client.interceptors.request.use((config) => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+        if (!(config.url === "/api/v1/users/login" || config.url === "/api/v1/users/register")) {
+            const token = localStorage.getItem("token");
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
         }
 
         return config;

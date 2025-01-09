@@ -33,7 +33,8 @@ export default function Login() {
             "password": password
         }).then((response) => {
             if(response.status === 200) {
-                navigate("/");
+                console.log(response);
+                navigate(`/${response.data.user_id}`);
             } else if (response.status === 409) {
                 setError(response.data.message);
                 setIsAlertOpen(true);
