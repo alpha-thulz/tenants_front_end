@@ -51,7 +51,10 @@ export default function Building() {
                         <td>{value.servicesCosts}</td>
                         <td>{value.underMaintenance ? "Yes" : "No"}</td>
                         <td>{`${value.tenant.length}/${value.totalTenants}`}</td>
-                        <td><Button label="Remove room listing" onClick={() => (console.log(`Delete room ${value.id}`))} color={"danger"}/> </td>
+                        <td>
+                            <Button label="Remove room listing" onClick={() => (console.log(`Delete room ${value.id}`))} color={"danger"}/>
+                            <Button label={"Add tenant"} onClick={() => (console.log(`Add tenant to ${value.id}`))} />
+                        </td>
                     </tr>
                 ))}
             </BasicTable>

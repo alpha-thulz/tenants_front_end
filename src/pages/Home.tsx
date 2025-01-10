@@ -18,7 +18,6 @@ export default function Home() {
         connect("").get(`/api/v1/users/${param.id}`)
             .then((response) => {
                 setData(response.data);
-                // const isAuth = response.config.headers.Authorization;
                 if (response.status === 401) {
                     navigate("/login");
                 }
@@ -38,8 +37,9 @@ export default function Home() {
                                     <tr key={item.id}>
                                         <td>{item.name}</td>
                                         <td>{item.address}</td>
-                                        <td><Button label={"Maintain"}
-                                                    onClick={() => navigate(`/user/${param.id}/building/${item.id}`)}/>
+                                        <td>
+                                            <Button label={"Maintain"} onClick={() => navigate(`/user/${param.id}/building/${item.id}`)}/>
+                                            <Button label={"Delete"} onClick={() => ("Remove property")} color={"danger"} />
                                         </td>
                                     </tr>
                                 ))}
